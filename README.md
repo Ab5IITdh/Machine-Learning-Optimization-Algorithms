@@ -34,6 +34,52 @@ where:
 1. Compute the gradient of the cost function.
 2. Update parameters in the opposite direction of the gradient.
 3. Repeat until convergence.
+### Gradient Descent With One Parameter
+
+# Gradient Descent
+
+Gradient descent is an optimization algorithm that can help us optimize our loss function more efficiently than the "manual" approach we tried above. As the name suggests, we are going to leverage the **gradient** of our loss function to help us optimize our model parameters. The gradient is just a vector of (partial) derivatives of the loss function w.r.t the model parameters. Sounds complicated, but it's not at all (as I'll hopefully show you).
+
+In plain English, the gradient will tell us two things:
+
+1. **Which direction** to move our parameter in to decrease loss (i.e., should we increase or decrease its value?)
+2. **How far** to move it (i.e., should we adjust it by 0.1 or 2 or 50 etc.?)
+
+> If you need a refresher on gradients, check out [Appendix A: Gradients Review](appendixA_gradients.ipynb).
+
+Let's forget about the intercept now and just work with this simple linear model:  
+\[
+\hat{y_i} = w x_i
+\]
+For this model, the loss function has the form:
+
+\[
+f(w) = \frac{1}{n} \sum^{n}_{i=1} ((w x_i) - y_i)^2
+\]
+
+The gradient of this function with respect to the parameter \( w \) is:
+
+\[
+\frac{d}{dw} f(w) = \frac{1}{n} \sum^{n}_{i=1} 2x_i (w x_i - y_i)
+\]
+```python
+Let's code that up and calculate the gradient of our loss function at a slope of \( w = 0.5 \):
+
+def gradient_descent(x, y, w=0.5, alpha=0.00001, ε=1e-8, max_iterations=10000, print_progress=1000):
+    iterations = 0
+    dw = float('inf')
+    while abs(dw) > ε and iterations <= max_iterations:
+        g = gradient(x, y, w)  # calculate current gradient
+        dw = alpha * float(g)  # ensure g is converted to a float
+        w -= dw
+        iterations += 1
+        if iterations % print_progress == 0:
+            print(f"Iteration {iterations}. w = {w:.4f}, dw = {dw:.4f}")
+    print("Terminated!")
+    print(f"Iteration {iterations - 1}. w = {w:.4f}.")
+    return w
+```
+![newplot (1)](https://github.com/user-attachments/assets/b44084f1-2670-4f19-b225-3564317e58ad)
 
 ### Pros & Cons
 
