@@ -1,5 +1,3 @@
-# Machine-Learning-Optimization-Algorithms
-These algorithms adjust model parameters iteratively to reduce the difference between predicted and actual values.
 # Machine Learning Optimization Algorithms
 
 ## Introduction
@@ -16,6 +14,14 @@ Each of these algorithms has unique characteristics, advantages, and limitations
 
 ## 1. Gradient Descent (GD)
 
+Gradient descent is an optimization algorithm that can help us optimize our loss function more efficiently than the "manual" approach we tried above. As the name suggests, we are going to leverage the **gradient** of our loss function to help us optimize our model parameters. The gradient is just a vector of (partial) derivatives of the loss function w.r.t the model parameters. Sounds complicated, but it's not at all (as I'll hopefully show you).
+
+In plain English, the gradient will tell us two things:
+
+1. **Which direction** to move our parameter in to decrease loss (i.e., should we increase or decrease its value?)
+2. **How far** to move it (i.e., should we adjust it by 0.1 or 2 or 50 etc.?)
+
+> If you need a refresher on gradients, check out [Appendix A: Gradients Review](appendixA_gradients.ipynb).
 ### Mathematical Formulation
 
 Gradient Descent is an iterative optimization algorithm used to minimize a cost function \( J(\theta) \) by updating the model parameters in the direction of the negative gradient. The update rule is given by:
@@ -35,17 +41,6 @@ where:
 2. Update parameters in the opposite direction of the gradient.
 3. Repeat until convergence.
 ### Gradient Descent With One Parameter
-
-# Gradient Descent
-
-Gradient descent is an optimization algorithm that can help us optimize our loss function more efficiently than the "manual" approach we tried above. As the name suggests, we are going to leverage the **gradient** of our loss function to help us optimize our model parameters. The gradient is just a vector of (partial) derivatives of the loss function w.r.t the model parameters. Sounds complicated, but it's not at all (as I'll hopefully show you).
-
-In plain English, the gradient will tell us two things:
-
-1. **Which direction** to move our parameter in to decrease loss (i.e., should we increase or decrease its value?)
-2. **How far** to move it (i.e., should we adjust it by 0.1 or 2 or 50 etc.?)
-
-> If you need a refresher on gradients, check out [Appendix A: Gradients Review](appendixA_gradients.ipynb).
 
 Let's forget about the intercept now and just work with this simple linear model:  
 \[
@@ -79,7 +74,20 @@ def gradient_descent(x, y, w=0.5, alpha=0.00001, ε=1e-8, max_iterations=10000, 
     print(f"Iteration {iterations - 1}. w = {w:.4f}.")
     return w
 ```
-![newplot (1)](https://github.com/user-attachments/assets/b44084f1-2670-4f19-b225-3564317e58ad)
+```python
+plot_gradient_descent(x, y, w=0.5, alpha=0.00001)
+```
+![newplot (1)](https://github.com/user-attachments/assets/b44084f1-2670-4f19-b225-3564317e58ad) \\
+
+```python
+plot_gradient_descent(x, y, w=0.5, alpha=0.00005)
+```
+![newplot (2)](https://github.com/user-attachments/assets/82644b59-e957-4261-ac34-311bc02344b3)
+
+```python
+plot_gradient_descent(x, y, w=0.5, alpha=0.00015)
+```
+![newplot (3)](https://github.com/user-attachments/assets/53ab5f3d-9d0e-458f-871e-1f99cf936190)
 
 ### Pros & Cons
 
