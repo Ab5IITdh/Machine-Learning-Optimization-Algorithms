@@ -42,8 +42,8 @@ where:
 
 ### Visualization
 
-*(Add a plot showing gradient descent updates on a convex function.)*
-
+*![newplot](https://github.com/user-attachments/assets/8556db9b-433a-4e3b-a19f-6ed39c5efbaf)*
+It looks like a slope of 0.9 gives us the lowest MSE (~184.4). But you can imagine that this "grid search" approach quickly becomes computationally intractable as the size of our data set and number of model parameters increases
 ---
 
 ## 2. Stochastic Gradient Descent (SGD)
