@@ -230,9 +230,9 @@ This helps smooth out updates and speeds up convergence, especially in deep lear
 ```
 
 where:
-- \( m_t \) and \( v_t \) are the first and second moment estimates,
-- \( \beta_1 \) and \( \beta_2 \) are decay rates,
-- \( \epsilon \) is a small constant for numerical stability.
+- $$\( m_t \)$$ and $$\( v_t \)$$ are the first and second moment estimates,
+- $$\( \beta_1 \)$$ and $$\( \beta_2 \)$$ are decay rates,
+- $$\( \epsilon \)$$ is a small constant for numerical stability.
 
 ### Working Mechanism
 
@@ -248,7 +248,11 @@ where:
 
 ### Visualization
 
-*(Add a plot comparing Adam with GD and SGD.)*
+### Learning Rate: $$\eta = 0.1$$
+
+Using a **learning rate of 0.1**, the **loss** is evaluated at each iteration of the optimization algorithm.
+---
+![Adam Optimizer Animation](https://dzlab.github.io/assets/2019/20190615-optimizers-animation-adam-1.png)
 
 ---
 
