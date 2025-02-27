@@ -192,6 +192,32 @@ plot_gradient_descent_2d(x, y, w, alpha, np.arange(-30, 60, 2), np.arange(-40, 1
 ### Mathematical Formulation
 
 Adam combines the benefits of Momentum and RMSProp. It maintains exponentially weighted moving averages of past gradients and squared gradients:
+# Optimization Tweaks
+
+To overcome the limitations of basic Mini-batch Gradient Descent (GD), several tweaks and improvements have been introduced.
+
+## **1. Weight Decay**  
+
+Weight Decay (WD) is a form of **regularization**. Unlike **L2 regularization**, which adds the sum of squared parameters to the loss function to penalize large weights, WD **directly adds a proportion of the weights** (i.e., **wd × θ**) to the gradient update.  
+
+This technique helps improve **numerical stability** by avoiding the summation of large numbers. The updated weight equation becomes:
+
+$$
+\theta = \theta - \eta (\nabla_{\theta} J(\theta) + wd \cdot \theta) $$
+
+---
+
+## **2. Momentum**  
+
+Momentum is a **convergence acceleration** technique that helps GD navigate optimization landscapes where the cost function is **steep in some directions and flat in others** (e.g., local optima), preventing oscillations.  
+
+Momentum achieves this by adding to the gradient a fraction **β** (typically **0.9**) of the previous update applied to the weights. The weight update equations are:
+
+$$ m_t = \beta m_{t-1} + \eta \nabla_{\theta} J(\theta)$$
+
+$$ \theta_{t+1} = \theta_t - m_t $$
+
+This helps smooth out updates and speeds up convergence, especially in deep learning scenarios.
 
 ```math
 \begin{aligned}
@@ -204,9 +230,9 @@ Adam combines the benefits of Momentum and RMSProp. It maintains exponentially w
 ```
 
 where:
-- \( m_t \) and \( v_t \) are the first and second moment estimates,
-- \( \beta_1 \) and \( \beta_2 \) are decay rates,
-- \( \epsilon \) is a small constant for numerical stability.
+- $$\( m_t \)$$ and $$\( v_t \)$$ are the first and second moment estimates,
+- $$\( \beta_1 \)$$ and $$\( \beta_2 \)$$ are decay rates,
+- $$\( \epsilon \)$$ is a small constant for numerical stability.
 
 ### Working Mechanism
 
@@ -222,7 +248,11 @@ where:
 
 ### Visualization
 
-*(Add a plot comparing Adam with GD and SGD.)*
+### Learning Rate: $$\eta = 0.1$$
+
+Using a **learning rate of 0.1**, the **loss** is evaluated at each iteration of the optimization algorithm.
+---
+![Adam Optimizer Animation](https://dzlab.github.io/assets/2019/20190615-optimizers-animation-adam-1.png)
 
 ---
 
