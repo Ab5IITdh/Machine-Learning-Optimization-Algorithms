@@ -185,10 +185,6 @@ plot_gradient_descent_2d(x, y, w, alpha, np.arange(-30, 60, 2), np.arange(-40, 1
 ✅ Works well for large datasets.  
 ❌ Highly noisy updates, leading to fluctuating convergence.
 
-### Visualization
-
-*(Add a plot showing noisy but faster convergence compared to GD.)*
-
 ---
 
 ## 3. Adam Optimizer (Adaptive Moment Estimation)
