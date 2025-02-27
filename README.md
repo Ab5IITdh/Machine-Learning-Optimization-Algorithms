@@ -164,15 +164,26 @@ where \( (x_i, y_i) \) is a randomly selected training sample.
 3. Update parameters using this single sample.
 4. Repeat for all samples.
 
+ Let's plot a histogram of the gradient of each data point at a slope of -5:
+ ```python
+ plot_gradient_histogram(x, y, w=w[1])
+```
+![newplot (6)](https://github.com/user-attachments/assets/32d203aa-1dff-43b4-9b6c-e677eba1a309)
+The histogram is left-skewed, indicating that more often that not, our gradient is negative (i.e., we need to increase our slope to decrease our loss - if you look at the plot above this one, you'll see that makes sense). This means that we're **highly likely to move towards the minimum even if we only use a single data point!**. Hopefully you're semi-convinced that using just one data point is computational way faster, and mathematically not a totally horrible idea.
+
+Let's see stochastic gradient descent in action in the 2d case. It's pretty much the same as we saw last chapter, except that we pick a random data point at which to calculate the gradient (which is why we call it "stochastic").
+
+>For those who notice it, I've also removed the "tolerance" termination criteria in our stochastic gradient descent implementation below. The reason for this is that to fairly calculate the step size which we compare to our tolerance, we should use the whole data set, as we do in regular gradient descent, not just a fraction of it. But if we do this each iteration, we forfeit the computational savings of stochastic gradient descent! So we typically leave that stopping criteria out.
+ ```python
+plot_gradient_descent_2d(x, y, w, alpha, np.arange(-30, 60, 2), np.arange(-40, 140, 2), max_iterations=300, stochastic=True, seed=2020)
+ ```
+![newplot (7)](https://github.com/user-attachments/assets/dd4d92cd-172b-4b09-abed-38c1b041a322)
+
 ### Pros & Cons
 
 ✅ Faster updates, leading to quicker convergence.  
 ✅ Works well for large datasets.  
 ❌ Highly noisy updates, leading to fluctuating convergence.
-
-### Visualization
-
-*(Add a plot showing noisy but faster convergence compared to GD.)*
 
 ---
 
