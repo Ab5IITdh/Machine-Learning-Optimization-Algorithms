@@ -74,6 +74,7 @@ def gradient_descent(x, y, w=0.5, alpha=0.00001, ε=1e-8, max_iterations=10000, 
     print(f"Iteration {iterations - 1}. w = {w:.4f}.")
     return w
 ```
+## Effect Of Learning Rate : 
 ```python
 plot_gradient_descent(x, y, w=0.5, alpha=0.00001)
 ```
@@ -88,6 +89,11 @@ plot_gradient_descent(x, y, w=0.5, alpha=0.00005)
 plot_gradient_descent(x, y, w=0.5, alpha=0.00015)
 ```
 ![newplot (3)](https://github.com/user-attachments/assets/53ab5f3d-9d0e-458f-871e-1f99cf936190)
+
+```python
+plot_gradient_descent(x, y, w=0.5, alpha=0.00018, max_iterations=4)
+```
+![newplot (4)](https://github.com/user-attachments/assets/f8a12873-5308-4c3f-a4a5-8d9739a530a4)
 
 ### Pros & Cons
 
