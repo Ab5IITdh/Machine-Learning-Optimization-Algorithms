@@ -25,9 +25,9 @@ Gradient Descent is an iterative optimization algorithm used to minimize a cost 
 ```
 
 where:
-- \( \theta \) represents the model parameters,
-- \( \alpha \) is the learning rate,
-- \( \nabla J(\theta_t) \) is the gradient of the cost function with respect to the parameters.
+- $$\( \theta \)$$ represents the model parameters,
+- $$\( \alpha \)$$ is the learning rate,
+- $$\( \nabla J(\theta_t) \)$$ is the gradient of the cost function with respect to the parameters.
 
 ### Working Mechanism
 
@@ -42,8 +42,9 @@ where:
 
 ### Visualization
 
-*![newplot](https://github.com/user-attachments/assets/8556db9b-433a-4e3b-a19f-6ed39c5efbaf)*
-It looks like a slope of 0.9 gives us the lowest MSE (~184.4). But you can imagine that this "grid search" approach quickly becomes computationally intractable as the size of our data set and number of model parameters increases
+![newplot](https://github.com/user-attachments/assets/8556db9b-433a-4e3b-a19f-6ed39c5efbaf) \\
+
+#### It looks like a slope of 0.9 gives us the lowest MSE (~184.4). But you can imagine that this "grid search" approach quickly becomes computationally intractable as the size of our data set and number of model parameters increases
 ---
 
 ## 2. Stochastic Gradient Descent (SGD)
