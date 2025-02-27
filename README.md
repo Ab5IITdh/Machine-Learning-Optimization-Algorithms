@@ -40,7 +40,8 @@ where:
 1. Compute the gradient of the cost function.
 2. Update parameters in the opposite direction of the gradient.
 3. Repeat until convergence.
-### Gradient Descent With One Parameter
+4. 
+## Gradient Descent With One Parameter
 
 Let's forget about the intercept now and just work with this simple linear model:  
 \[
@@ -74,7 +75,7 @@ def gradient_descent(x, y, w=0.5, alpha=0.00001, ε=1e-8, max_iterations=10000, 
     print(f"Iteration {iterations - 1}. w = {w:.4f}.")
     return w
 ```
-## Effect Of Learning Rate : 
+### Effect Of Learning Rate : 
 ```python
 plot_gradient_descent(x, y, w=0.5, alpha=0.00001)
 ```
@@ -94,6 +95,43 @@ plot_gradient_descent(x, y, w=0.5, alpha=0.00015)
 plot_gradient_descent(x, y, w=0.5, alpha=0.00018, max_iterations=4)
 ```
 ![newplot (4)](https://github.com/user-attachments/assets/f8a12873-5308-4c3f-a4a5-8d9739a530a4)
+
+## Gradient Descent With Two Parameter
+
+Most of the models you'll be working with will have more than just one parameter to update - neural networks typically have hundreds, thousands, and even millions of parameters! So, let's extend the above workflow to two parameters, the intercept ($w_0$) and the slope ($w_1$). Just to help you get a visual of what's going on, let's take our "manual grid search approach" from earlier and make a plot of it but this time with two parameters:
+
+Above is the surface of MSE for different values of `intercept` ($w_0$) and `slope` ($w_1$). The approach for implementing gradient descent is exactly as before, but we're operating on two parameters now and the gradient of the intercept is a little different to the slope:
+
+$$f(w)=\frac{1}{n}\sum^{n}_{i=1}((w_0 + w_1x)-y_i))^2$$
+
+$$\frac{\partial{}}{\partial{}w_0}f(w)=\frac{1}{n}\sum^{n}_{i=1}2((w_0 + w_1x) - y_i)$$
+
+$$\frac{\partial{}}{\partial{}w_1}f(w)=\frac{1}{n}\sum^{n}_{i=1}2x_i((w_0 + w_1x) - y_i)$$
+
+```python
+def gradient_descent(x, y, w, alpha, ϵ=2e-4, max_iterations=5000, print_progress=10):
+    """Gradient descent for optimizing simple linear regression."""
+    
+    print(f"Iteration 0. Intercept {w[0]:.2f}. Slope {w[1]:.2f}.")
+    iterations = 1  # init iterations
+    dw = np.array(2 * ϵ)      # init. dw
+    
+    while abs(dw.sum()) > ϵ and iterations <= max_iterations:
+        g = gradient(x, y, w)  # calculate current gradient
+        dw = alpha * g         # change in w
+        w -= dw                # adjust w based on gradient * learning rate
+        if iterations % print_progress == 0:  # periodically print progress
+            print(f"Iteration {iterations}. Intercept {w[0]:.2f}. Slope {w[1]:.2f}.")
+        iterations += 1        # increase iteration
+        
+    print("Terminated!")
+    print(f"Iteration {iterations - 1}. Intercept {w[0]:.2f}. Slope {w[1]:.2f}.")
+
+gradient_descent(x, y, w=[10, 0.5], alpha=0.00001)
+```
+![newplot (5)](https://github.com/user-attachments/assets/5eedbab2-fb75-4c1c-b56f-b412f3eeebe5)
+
+
 
 ### Pros & Cons
 
